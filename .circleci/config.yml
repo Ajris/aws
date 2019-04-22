@@ -10,3 +10,9 @@ jobs:
       - checkout
       - run: mvn clean install
       - run: mvn sonar:sonar -Dsonar.projectKey=Ajris_aws -Dsonar.organization=ajris-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=fd2220871e5656ecc91490c83d7b3ebd72880d26
+      - setup_remote_docker:
+          version: 18.06.0-ce
+      - run: |
+          TAG=0.1.$CIRCLE_BUILD_NUM
+          docker build -t ajris/awsik:$TAG .
+          docker push ajris/awsik:$TAG
