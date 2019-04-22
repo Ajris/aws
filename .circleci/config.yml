@@ -1,8 +1,9 @@
 version: 2
 jobs:
   build:
-    docker: # use the docker executor type; machine and macos executors are also supported
-      - image: circleci/node:4.8.2 # the primary container, where your job's commands are run
+    branches:
+      only:
+       - master
     steps:
-      - checkout # check out the code in the project directory
-      - run: echo "hello world"
+      - checkout
+      - run: mvn sonar:sonar -Dsonar.projectKey=Ajris_aws -Dsonar.organization=ajris-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=fd2220871e5656ecc91490c83d7b3ebd72880d26
