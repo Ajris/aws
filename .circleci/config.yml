@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      image: maven/maven:3.6.1-jdk-11-slim
+      - image: maven:3.6.1-jdk-11-slim
     branches:
       only:
        - master
